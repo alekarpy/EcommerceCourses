@@ -1,179 +1,94 @@
-# Backend para Plataforma de Cursos en Línea
+# 🎓 Plataforma de Cursos en Línea (E-commerce)
 
-API RESTful para una tienda de cursos en línea construida con **Node.js, Express y MongoDB**.
+¡Bienvenido al repositorio de la Plataforma de Cursos en Línea! Este proyecto es una aplicación full-stack diseñada para la venta y gestión de cursos educativos. Está compuesta por un frontend moderno construido con **Angular** y una robusta API backend desarrollada con **Node.js, Express y MongoDB**.
 
-## Funcionalidades
+## 🏗️ Estructura del Proyecto
 
-* Autenticación de usuarios con **JWT**
-* Autorización basada en roles (**administrador / cliente**)
-* Operaciones **CRUD** para productos (cursos)
-* Funcionalidad de carrito de compras
-* Gestión de órdenes
-* Validación de datos con **express-validator**
-* Encriptación de contraseñas con **bcryptjs**
-* Paginación para productos y usuarios
-* Middleware de manejo de errores
+El repositorio está dividido en dos directorios principales:
 
-## Endpoints de la API
+*   [**`ecommerce-app/`**](./ecommerce-app/README.md): Contiene la aplicación web frontend (Angular).
+*   [**`ecommerce-api/`**](./ecommerce-api/README.md): Contiene la API RESTful backend (Node.js/Express).
 
-### Autenticación
+Cada carpeta tiene su propio `README.md` con instrucciones detalladas específicas para el frontend y el backend.
 
-* `POST /api/auth/register` - Registrar un nuevo usuario
-* `POST /api/auth/login` - Iniciar sesión
-* `GET /api/auth/me` - Obtener el usuario actual
+## 🌟 Funcionalidades Principales
 
-### Productos
+### Para Estudiantes (Clientes)
+*   Explorar el catálogo de cursos disponibles.
+*   Crear una cuenta e iniciar sesión de forma segura (JWT).
+*   Agregar cursos a un carrito de compras y lista de deseos (wishlist).
+*   Realizar el proceso de compra (checkout).
+*   Ver historial de órdenes de compra.
+*   Modificar información del perfil de usuario.
 
-* `GET /api/products` - Obtener todos los productos (público)
-* `GET /api/products/:id` - Obtener un producto por ID (público)
-* `POST /api/products` - Crear producto (**solo administrador**)
-* `PUT /api/products/:id` - Actualizar producto (**solo administrador**)
-* `DELETE /api/products/:id` - Eliminar producto (**solo administrador**)
+### Para Administradores
+*   Panel de administración dedicado.
+*   Gestión de cursos (Crear, Leer, Actualizar, Eliminar).
+*   Gestión de usuarios de la plataforma.
 
-### Carrito
+## 🚀 Requisitos Previos
 
-* `GET /api/cart` - Obtener el carrito del usuario
-* `POST /api/cart/add` - Agregar un ítem al carrito
-* `PUT /api/cart/:itemId` - Actualizar un ítem del carrito
-* `DELETE /api/cart/:itemId` - Eliminar un ítem del carrito
-* `DELETE /api/cart` - Vaciar el carrito
+Para ejecutar este proyecto de forma local, necesitarás tener instalado:
 
-### Usuarios
+*   **Node.js** (v16 o superior)
+*   **Angular CLI** (para ejecutar el frontend)
+*   **MongoDB** (local o una instancia en la nube como MongoDB Atlas)
 
-* `GET /api/users` - Obtener todos los usuarios (**solo administrador**)
-* `GET /api/users/:id` - Obtener un usuario por ID (**solo administrador**)
-* `PUT /api/users/:id` - Actualizar usuario (**solo administrador**)
-* `DELETE /api/users/:id` - Eliminar usuario (**solo administrador**)
+## 🛠️ Guía de Instalación Rápida
 
-### Órdenes
+Sigue estos pasos para arrancar ambos proyectos de forma simultánea.
 
-* `POST /api/orders` - Crear una nueva orden
-* `GET /api/orders` - Obtener las órdenes del usuario
-* `GET /api/orders/:id` - Obtener una orden por ID
+### 1. Configurar y lanzar el Backend (`ecommerce-api`)
 
-## Instalación
+1.  Abre una terminal y navega al backend:
+    ```bash
+    cd ecommerce-api
+    ```
+2.  Instala las dependencias:
+    ```bash
+    npm install
+    ```
+3.  Crea un archivo `.env` en la raíz de `ecommerce-api` basándote en un posible `.env.example` o configura las variables esenciales (ver el README del backend para detalles como `MONGODB_URI` y `JWT_SECRET`).
+4.  Llena la base de datos con datos y usuarios de prueba:
+    ```bash
+    npm run seed
+    ```
+5.  Inicia el servidor backend:
+    ```bash
+    npm run dev
+    ```
+    *El backend estará corriendo en `http://localhost:5000`*
 
-1. Clonar el repositorio
-2. Instalar dependencias:
+### 2. Configurar y lanzar el Frontend (`ecommerce-app`)
 
-   ```bash
-   npm install
-   ```
-3. Crear un archivo `.env` con tus variables de entorno
-4. Iniciar MongoDB localmente o usar una cadena de conexión en la nube
-5. Probar la base de datos con datos iniciales:
+1.  Abre **una nueva pestaña** en tu terminal y navega al frontend:
+    ```bash
+    cd ecommerce-app
+    ```
+2.  Instala las dependencias:
+    ```bash
+    npm install
+    ```
+3.  Inicia la aplicación Angular:
+    ```bash
+    npm start
+    # o ng serve
+    ```
+    *El frontend estará corriendo en `http://localhost:4200`*
 
-   ```bash
-   npm run seed
-   ```
-6. Iniciar el servidor:
+---
 
-   ```bash
-   npm run dev
-   ```
+## 👥 Usuarios de Prueba
 
-## Variables de Entorno
+Al ejecutar el comando `npm run seed` en el backend, la base de datos se poblará automáticamente con algunos usuarios predeterminados que puedes usar para probar la aplicación en el frontend:
 
-* `PORT` - Puerto del servidor (default: 5000)
-* `MONGODB_URI` - Cadena de conexión de MongoDB
-* `JWT_SECRET` - Clave secreta para JWT
-* `JWT_EXPIRE` - Tiempo de expiración de los tokens JWT
+| Rol | Nombre | Email | Contraseña |
+| :--- | :--- | :--- | :--- |
+| **Administrador** | admin_user | `admin@example.com` | `password123` |
+| **Cliente** | karla_medina | `karla@example.com` | `password123` |
 
-## Datos de Prueba
+Usa el usuario administrador para ver el panel de control y crear/editar cursos, y los usuarios clientes para navegar por la tienda, añadir al carrito y simular compras.
 
-Después de correr `npm run seed`, la base de datos se completará con **categorías, cursos y usuarios de prueba**.
+## 📄 Licencia
 
-### Usuarios de prueba
-
-| Nombre        | Email                                           | Contraseña  | Rol     |
-| ------------- | ----------------------------------------------- | ----------- |---------|
-| Admin User    | [admin@example.com](mailto:admin@example.com)   | password123 | admin   |
-| Karla Medina  | [karla@example.com](mailto:karla@example.com)   | password123 | cliente |
-| Selene Juárez | [selene@example.com](mailto:selene@example.com) | password123 | cliente |
-
-### Cursos de prueba
-
-Algunos ejemplos de cursos disponibles tras ejecutar `npm run seed`:
-
-| Título                                          | Categoría        | Instructor       | Nivel        | Precio |
-| ----------------------------------------------- | ---------------- | ---------------- |--------------| ------ |
-| Javascript Avanzado: Domínalo Como Un Master    | Desarrollo Web   | Luis Cruz        | avanzado     | 1899   |
-| React: Crea Aplicaciones Web de Alto Nivel      | Desarrollo Web   | María Martínez   | principiante | 899    |
-| Python Total: Analiza Datos En Tiempo Real      | Ciencia de Datos | Miguel González  | principiante       | 299    |
-| Diseño de Interfaces: Aprende con Figma         | Diseño Gráfico   | Emily Carvalho   | principiante       | 1100   |
-| Marketing Digital: Aprende con Google Analytics | Marketing        | Roberto Palacios | intermedio   | 299    |
-
-### Ejemplo de uso de token JWT
-
-Después de iniciar sesión, recibirás un token. Úsalo en el encabezado de tus requests protegidos:
-
-```
-Authorization: Bearer <TU_TOKEN_AQUI>
-```
-
-## Ejemplos de Requests con curl
-
-### 1. Iniciar sesión
-
-```bash
-curl -X POST http://localhost:5000/api/auth/login \
--H "Content-Type: application/json" \
--d '{"email": "admin@example.com", "password": "password123"}'
-```
-
-### 2. Obtener todos los productos (público)
-
-```bash
-curl http://localhost:5000/api/products
-```
-
-### 3. Crear un producto (solo admin)
-
-```bash
-curl -X POST http://localhost:5000/api/products \
--H "Content-Type: application/json" \
--H "Authorization: Bearer <TU_TOKEN_ADMIN>" \
--d '{
-  "title": "Nuevo Curso de Node.js",
-  "description": "Aprende Node.js desde cero",
-  "price": 1200,
-  "instructor": "Carlos Pérez",
-  "duration": 20,
-  "level": "principiante",
-  "category": "Desarrollo Web"
-}'
-```
-
-### 4. Agregar un producto al carrito (usuario)
-
-```bash
-curl -X POST http://localhost:5000/api/cart/add \
--H "Content-Type: application/json" \
--H "Authorization: Bearer <TU_TOKEN_CLIENTE>" \
--d '{"productId": "<ID_DEL_PRODUCTO>", "quantity": 1}'
-```
-
-### 5. Crear una orden (usuario)
-
-```bash
-curl -X POST http://localhost:5000/api/orders \
--H "Content-Type: application/json" \
--H "Authorization: Bearer <TU_TOKEN_CLIENTE>" \
--d '{"items": [{"productId": "<ID_DEL_PRODUCTO>", "quantity": 1}]}'
-```
-
-## Pruebas con Postman
-
-1. Importar la colección de Postman incluida
-2. Configurar la URL base: `http://localhost:5000/api`
-3. Registrar o iniciar sesión con un usuario de prueba para obtener un **token JWT**
-4. Usar el token en el encabezado **Authorization** para acceder a rutas protegidas
-
-## Tecnologías Utilizadas
-
-* **Node.js**
-* **Express.js**
-* **MongoDB** con **Mongoose**
-* **JWT** para autenticación
-* **bcryptjs** para hash de contraseñas
-* **express-validator** para validación de datos
+Este proyecto es para fines educativos y demostrativos.

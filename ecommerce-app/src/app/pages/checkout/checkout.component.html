@@ -539,46 +539,7 @@
                 <h3 class="item-name">{{ item.nombre }}</h3>
                 <p class="item-category">{{ item.categoria }}</p>
                 <div class="item-quantity-controls">
-                  <button
-                    type="button"
-                    (click)="cartService.decreaseQuantity(item)"
-                    class="qty-button"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                  </button>
-                  <span class="qty-value">{{ item.cantidad }}</span>
-                  <button
-                    type="button"
-                    (click)="cartService.increaseQuantity(item)"
-                    class="qty-button"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                  </button>
+                  <span class="qty-value" style="font-size: 0.8em; color: #666; background: #f0f0f0; padding: 2px 6px; border-radius: 4px;">Curso único</span>
                 </div>
               </div>
               <div class="item-price-section">
@@ -614,14 +575,7 @@
 
           <!-- Resumen de precios -->
           <div class="summary-totals">
-            <div class="total-row">
-              <span class="total-label">Subtotal:</span>
-              <span class="total-value">{{ subtotal | currency }}</span>
-            </div>
-            <div class="total-row">
-              <span class="total-label">IVA (16%):</span>
-              <span class="total-value">{{ tax | currency }}</span>
-            </div>
+
             <div class="total-row final-total">
               <span class="total-label">Total:</span>
               <span class="total-value">{{ totalWithTax | currency }}</span>

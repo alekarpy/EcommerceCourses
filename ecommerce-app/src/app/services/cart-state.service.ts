@@ -80,20 +80,16 @@ export class CartStateService {
         (item) => item.id === product.id
       );
 
-      let updatedItems: Datos[];
       if (existingItem) {
-        updatedItems = currentState.items.map((item) =>
-          item.id === product.id
-            ? { ...item, cantidad: item.cantidad + 1 }
-            : item
-        );
-      } else {
-        updatedItems = [...currentState.items, { ...product, cantidad: 1 }];
+        this.setError("Este curso ya está en tu carrito");
+        return;
       }
+
+      const updatedItems = [...currentState.items, { ...product, cantidad: 1 }];
 
       this.updateCartState({
         items: updatedItems,
-        totalItems: updatedItems.reduce((sum, item) => sum + item.cantidad, 0),
+        totalItems: updatedItems.length,
         lastUpdated: new Date(),
       });
 
@@ -256,7 +252,7 @@ export class CartStateService {
       (sum, item) => sum + item.precio * item.cantidad,
       0
     );
-    const tax = subtotal * 0.16; // 16% de impuesto (ajustable)
+    const tax = 0; // Sin impuestos adicionales (0%)
     const discount = 0; // Puedes implementar lógica de descuentos aquí
     const total = subtotal + tax - discount; // Productos digitales, sin envío
 

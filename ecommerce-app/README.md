@@ -1,130 +1,64 @@
-# Mini Ecommerce Angular
+# 🖥️ Frontend - Tienda de Cursos en Línea (Angular)
 
-Este proyecto es una evaluación final para estudiantes del curso de Angular. Consiste en crear una aplicación base de ecommerce utilizando `localStorage` como fuente de datos.
+Este es el frontend de la plataforma de e-commerce de cursos educativos, desarrollado utilizando **Angular** y estilizado con **Tailwind CSS**. Proporciona una interfaz moderna, responsiva y fácil de usar tanto para los estudiantes como para los administradores de la plataforma.
 
-## 🌟 Objetivo
+## ✨ Tecnologías Principales
 
-Demostrar el dominio de los conceptos vistos durante el curso mediante la creación de una aplicación funcional que incluya:
+*   **Framework:** Angular (Standalone Components y Lazy Loading)
+*   **Estilos:** Tailwind CSS
+*   **Routing:** Angular Router
+*   **Gestión de Formularios:** Reactive Forms
+*   **Autenticación:** Interceptors y Guards basados en JWT
 
-- Vista de productos
-- Vista del carrito
-- Vista de checkout
-- Vista de confirmación de compra
+## 🗺️ Estructura de Rutas y Navegación
 
----
+La aplicación está dividida en diferentes áreas según el nivel de acceso del usuario:
 
-## ✅ Qué se espera que hagas
+### 🌐 Rutas Públicas (Cualquiera puede acceder)
+*   `/inicio` - Página de aterrizaje principal de la tienda.
+*   `/cursos` - Catálogo completo de cursos disponibles.
+*   `/login` - Inicio de sesión.
+*   `/register` - Registro de nuevos usuarios.
+*   `/sobrenosotros` - Información sobre la plataforma.
+*   `/contacto` - Formulario de contacto.
 
-1. Haz un **fork** de este repositorio:
-   [https://github.com/Inadaptados/2025-1-ecommerce](https://github.com/Inadaptados/2025-1-ecommerce)
-2. Clona tu fork:
-   ```bash
-   git clone https://github.com/<tu-usuario>/2025-1-ecommerce.git
-   cd 2025-1-ecommerce
-   ```
-3. Instala las dependencias:
-   ```bash
-   npm install
-   ```
-4. Inicia el proyecto:
-   ```bash
-   ng serve
-   ```
-5. Crea las siguientes vistas:
-   - `/productos`: Muestra una lista de productos.
-   - `/carrito`: Muestra los productos agregados.
-   - `/checkout`: Formulario para ingresar datos del comprador.
-   - `/confirmacion`: Muestra un resumen de la compra.
-6. Usa `localStorage` para almacenar:
-   - El carrito.
-   - Los datos del pedido confirmado.
-7. Sube tus cambios a tu repositorio.
-8. Entrega el link de tu repositorio.
+### 🔒 Rutas Protegidas (Solo para usuarios autenticados)
+*   `/profile` - Perfil de usuario para modificar datos.
+*   `/cart` y `/cart-full` - Visualización del carrito de compras.
+*   `/wishlist` - Cursos guardados en la lista de deseos.
+*   `/checkout` - Proceso de compra (con protección para no abandonar el formulario por error).
+*   `/order-history` - Historial de compras anteriores.
 
----
+### 🛡️ Rutas de Administración (Solo usuarios con rol admin)
+*   `/admin/*` - Panel de control (Dashboard) cargado mediante *Lazy Loading* para gestionar productos (cursos), usuarios y visualizar métricas de la tienda.
 
-## 📤 Publicar en GitHub Pages
+## 🚀 Instalación y Ejecución
 
-> Esta sección es opcional y puede realizarse con apoyo del docente.
+Asegúrate de que la API Backend (`ecommerce-api`) esté ejecutándose antes de probar el frontend para que las llamadas a la base de datos funcionen correctamente.
 
-1. Asegúrate de que el proyecto esté compilado para producción:
-   ```bash
-   ng build --base-href "/2025-1-ecommerce/"
-   ```
+1.  **Instalar dependencias:**
+    Navega a la carpeta `ecommerce-app` y ejecuta:
+    ```bash
+    npm install
+    ```
 
-2. Modifica el archivo angular.json para que tenga la sig linea
-   ```
-      "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
-        }
-   ```
-   este debe estar a la altura de test
-3. agregar la siguiente linea en la seccion de scripts en package.json
-```
- "deploy":"ng deploy --base-href=/2025-1-ecommerce/" 
-```
-4. Instala el paquete para desplegar:
-   ```bash
-   ng add angular-cli-ghpages
-   ```
-5. Despliega el proyecto:
-   ```bash
-   npx angular-cli-ghpages --dir=dist/2025-1-ecommerce
-   ```
-6. Tu aplicación estará disponible en:
-   ```
-   https://<tu-usuario>.github.io/2025-1-ecommerce/
-   ```
+2.  **Ejecutar el servidor de desarrollo:**
+    ```bash
+    ng serve
+    # O también puedes usar: npm start
+    ```
 
----
+3.  **Visualizar la app:**
+    Abre tu navegador web y dirígete a `http://localhost:4200/`. La aplicación recargará automáticamente si realizas cambios en el código fuente.
 
-## 📊 Evaluación
+## 🧪 Cómo probar la aplicación
 
-| Criterio            | Peso |
-| ------------------- | ---- |
-| Data Binding        | 25%  |
-| Directivas          | 25%  |
-| Servicios           | 15%  |
-| Ruteo               | 15%  |
-| Uso de localStorage | 20%  |
-| **Total**           | 100% |
+Para experimentar con los distintos flujos de la aplicación, te recomendamos usar los usuarios generados por el backend (asegúrate de haber ejecutado `npm run seed` en el backend):
 
----
+*   **Para ver la experiencia de compra:** Inicia sesión con `karla@example.com` (Contraseña: `password123`). Podrás añadir cursos al carrito, ir al checkout y ver el historial.
+*   **Para ver el panel de administración:** Inicia sesión con `admin@example.com` (Contraseña: `password123`) y navega a las rutas de administración para gestionar el contenido de la tienda.
 
-## 📂 Estructura recomendada
+## 🛠️ Comandos Adicionales (Angular CLI)
 
-```
-src/
-├── server/
-│   ├──components/
-│   │
-│   ├──pages/
-│   │   ├── product-list/
-│   │   ├── cart/
-│   │   ├── checkout/
-│   │   ├── confirmation/
-│   ├── services/
-│   │   ├── cart.service.ts
-│   │   └── product.service.ts
-│   └── server.routes.ts
-```
-
----
-
-## 📅 Fecha de entrega
-
-La entrega del proyecto se realiza subiendo el código a GitHub y compartiendo el link con el equipo de Inadaptados antes del 23 de abril de 2025.
-
-NOTA: Asegúrate de que tu repositorio sea público y que todo el código esté en la rama `main`.
-
----
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-
-## 📧 Contacto
-
-[Inadaptados](https://inadaptados.mx)
-
-🚀 ¡Buena suerte y deja volar tu creatividad!
+*   `ng build`: Compila el proyecto en la carpeta `dist/` para subirlo a producción.
+*   `ng test`: Ejecuta las pruebas unitarias usando Karma.

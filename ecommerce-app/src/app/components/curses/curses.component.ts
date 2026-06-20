@@ -31,8 +31,6 @@ import { ProductSkeletonComponent } from "../product-skeleton/product-skeleton.c
 export class CursesComponent implements OnInit, OnDestroy {
   mostrarCarrito: boolean = false;
 
-  notificacionVisible = false;
-
   cursos: Datos[] = [];
 
   categoriaSeleccionada: string = "Todos";
@@ -342,7 +340,6 @@ export class CursesComponent implements OnInit, OnDestroy {
   agregarAlCarrito(product: Datos): void {
     this.cartService.addToCart(product);
     this.mostrarCarrito = true; // Esto activará el modal
-    this.mostrarNotificacion();
   }
 
   cargarWishlist() {
@@ -648,12 +645,7 @@ export class CursesComponent implements OnInit, OnDestroy {
     }
   }
 
-  mostrarNotificacion() {
-    this.notificacionVisible = true;
-    setTimeout(() => {
-      this.notificacionVisible = false;
-    }, 3000); // 3 segundos
-  }
+
 
   // Obtener categorías únicas de los cursos
   get categoriasUnicas(): string[] {
@@ -680,6 +672,4 @@ export class CursesComponent implements OnInit, OnDestroy {
   cerrarCarrito() {
     this.mostrarCarrito = false;
   }
-}
-
-/*  this.cursos = this.productService.datos; // O usar un observable si es async */
+}/*  this.cursos = this.productService.datos; // O usar un observable si es async */

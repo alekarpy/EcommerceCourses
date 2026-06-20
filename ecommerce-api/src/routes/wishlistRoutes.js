@@ -34,3 +34,8 @@ router.delete('/', clearWishlist);
 
 export default router;
 
+
+
+
+
+

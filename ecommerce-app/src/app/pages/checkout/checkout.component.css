@@ -606,9 +606,7 @@
 }
 
 .total-row.final-total {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 2px solid #e5e7eb;
+  /* Eliminado border-top y paddings para no duplicar línea */
 }
 
 .total-row.final-total .total-label {

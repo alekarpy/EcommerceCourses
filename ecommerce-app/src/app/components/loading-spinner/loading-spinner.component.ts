@@ -13,3 +13,8 @@ export class LoadingSpinnerComponent {
   @Input() size: "small" | "medium" | "large" = "medium";
 }
 
+
+
+
+
+

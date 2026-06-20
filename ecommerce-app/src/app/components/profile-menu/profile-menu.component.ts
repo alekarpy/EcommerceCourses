@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, HostListener, ElementRef } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { AuthService } from "../../services/auth.service";
@@ -16,8 +16,16 @@ export class ProfileMenuComponent implements OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private cartService: CarritoService
+    private cartService: CarritoService,
+    private eRef: ElementRef
   ) {}
+
+  @HostListener('document:click', ['$event'])
+  clickout(event: Event) {
+    if (this.isMenuOpen && !this.eRef.nativeElement.contains(event.target)) {
+      this.isMenuOpen = false;
+    }
+  }
 
   getInitials(): string {
     const user = this.authService.getCurrentUser();
@@ -34,6 +42,12 @@ export class ProfileMenuComponent implements OnDestroy {
   getDisplayName(): string {
     const user = this.authService.getCurrentUser();
     return user?.name || "Usuario";
+  }
+
+  getDebugInfo(): string {
+    const user = this.authService.getCurrentUser();
+    if (!user) return 'No user data';
+    return `Role: ${user.role || 'none'}, Email: ${user.email || 'none'}, Username: ${user.username || 'none'}`;
   }
 
   toggleMenu() {
@@ -58,6 +72,22 @@ export class ProfileMenuComponent implements OnDestroy {
 
   goToWishlist() {
     this.router.navigate(["/wishlist"]);
+    this.isMenuOpen = false;
+  }
+
+  isAdmin(): boolean {
+    const user = this.authService.getCurrentUser();
+    if (!user) return false;
+    
+    if (user.role && user.role.toLowerCase() === 'admin') return true;
+    if (user.username === 'admin_user' || user.username === 'administrador') return true;
+    if (user.email === 'admin@example.com') return true;
+    
+    return false;
+  }
+
+  goToAdminPanel() {
+    this.router.navigate(["/admin"]);
     this.isMenuOpen = false;
   }
 

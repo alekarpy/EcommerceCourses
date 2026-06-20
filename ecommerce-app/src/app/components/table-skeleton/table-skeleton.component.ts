@@ -22,3 +22,8 @@ export class TableSkeletonComponent {
   }
 }
 
+
+
+
+
+

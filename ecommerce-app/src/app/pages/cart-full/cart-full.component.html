@@ -81,13 +81,7 @@
           <div class="item-controls">
             <div class="quantity-section">
               <div class="quantity-controls">
-                <button (click)="decreaseQuantity(item)" class="qty-btn">
-                  -
-                </button>
-                <span class="quantity">{{ item.cantidad }}</span>
-                <button (click)="increaseQuantity(item)" class="qty-btn">
-                  +
-                </button>
+                <span class="quantity" style="font-size: 0.9em; color: #666; background: #f0f0f0; padding: 4px 8px; border-radius: 4px;">Curso único</span>
               </div>
 
               <div class="price-section">
@@ -111,18 +105,7 @@
         <div class="summary-card">
           <h3>Resumen del Pedido</h3>
 
-          <div class="summary-row">
-            <span
-              >Subtotal ({{ getTotalItems() }}
-              {{ getTotalItems() === 1 ? "curso" : "cursos" }}):</span
-            >
-            <span>${{ getSubtotal() | number : "1.2-2" }}</span>
-          </div>
 
-          <div class="summary-row" *ngIf="getTax() > 0">
-            <span>Impuestos (16%):</span>
-            <span>${{ getTax() | number : "1.2-2" }}</span>
-          </div>
 
           <div class="summary-row discount" *ngIf="getDiscount() > 0">
             <span>Descuento:</span>

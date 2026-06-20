@@ -13,3 +13,8 @@ export class ProductSkeletonComponent {
   // Para múltiples skeletons, usa @for en el template padre
 }
 
+
+
+
+
+

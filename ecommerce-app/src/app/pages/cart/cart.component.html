@@ -27,6 +27,12 @@
 
         <!-- Contenido del carrito -->
         <div class="p-4 h-[calc(100%-120px)] overflow-y-auto">
+          @if (hasError) {
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+              <span class="block sm:inline">⚠️ {{ errorMessage }}</span>
+            </div>
+          }
+
           @if (productos.length > 0) {
             <div class="space-y-4">
               @for (item of productos; track $index) {
@@ -37,13 +43,7 @@
                     <p class="text-sm text-gray-600">{{ item.descripcion }}</p>
                     <div class="flex items-center justify-between mt-1">
                       <div class="flex items-center gap-2">
-                        <button (click)="carritoService.decreaseQuantity(item)" class="text-gray-500 hover:text-indigo-600 w-6 h-6 flex items-center justify-center border rounded">
-                          <i class="fas fa-minus text-xs"></i>
-                        </button>
-                        <span class="mx-2">{{item.cantidad}}</span>
-                        <button (click)="carritoService.increaseQuantity(item)"  class="text-gray-500 hover:text-indigo-600 w-6 h-6 flex items-center justify-center border rounded">
-                          <i class="fas fa-plus text-xs"></i>
-                        </button>
+                        <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Curso único</span>
                       </div>
                       <div>
                         <span class="font-bold text-indigo-600">{{ item.precio | currency }}</span>

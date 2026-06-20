@@ -312,7 +312,6 @@
 }
 
 .summary-row.total {
-    border-top: 2px solid #e9ecef;
     border-bottom: none;
     font-weight: 700;
     font-size: 1.3rem;
