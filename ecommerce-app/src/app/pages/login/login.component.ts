@@ -237,6 +237,20 @@ export class LoginComponent {
     this.showPassword = false;
   }
 
+  // Método para llenar credenciales de prueba (Admin)
+  fillTestCredentials() {
+    this.loginForm.patchValue({
+      username: 'admin_user',
+      email: 'admin@example.com',
+      password: 'password123'
+    });
+    // Limpiamos errores al autollenar
+    this.usernameError = "";
+    this.emailError = "";
+    this.passwordError = "";
+    this.errorMessage2 = "";
+  }
+
   // Verificar si el formulario puede ser enviado
   canSubmit(): boolean {
     return (

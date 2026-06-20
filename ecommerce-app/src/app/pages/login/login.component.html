@@ -112,6 +112,11 @@
       <p *ngIf="errorMessage2" class="error-text2">
         {{ errorMessage2 }}
       </p>
+
+      <!-- Botón de relleno rápido para pruebas -->
+      <button type="button" class="btn-test-fill" (click)="fillTestCredentials()">
+        Llenar con credenciales de prueba (Admin)
+      </button>
     </form>
 
     <div class="text-register">
